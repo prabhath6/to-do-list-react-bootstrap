@@ -1,6 +1,8 @@
 import React from "react";
 import { Jumbotron, Row, Col  } from "react-bootstrap";
 import AddTask from "./AddTask";
+import ListItems from "./ListItems";
+import './ToDoItemList.css';
 
 class ToDoItemList extends React.Component {
 
@@ -15,8 +17,7 @@ class ToDoItemList extends React.Component {
         super(props)
 
         this.state = {
-            taskList: [],
-            taskValue: ''
+            taskList: []
         }
     }
 
@@ -31,14 +32,35 @@ class ToDoItemList extends React.Component {
         })
     }
 
+    handleClick = (key) => {
+        const prevTaskList = this.state.taskList.slice();
+        const filteredTaskList = prevTaskList.filter(task => task.key !== key);
+
+        this.setState({
+            taskList: filteredTaskList
+        })
+    }
+
     render() {
         const jumbotronInstance = (
             <Jumbotron>
                 <Row className="show-grid">
                     <Col xs={6} md={4}></Col>
                     <Col xs={6} md={4}>
-                        <h3>To Do List</h3>
-                        <AddTask updatedTaskList={this.updateTaskList}/>
+
+                        <div className="InputElements">
+                            <h3>To Do List</h3>
+                            <AddTask updatedTaskList={this.updateTaskList} />
+                        </div>
+
+                        <Row className="show-grid">
+                            <Col xs={10} xsOffset={0}>
+                                <div className="taskListElements">
+                                    <ListItems tasks={this.state.taskList} deleteTask={this.handleClick} />
+                                </div>
+                            </Col>
+                        </Row>
+
                     </Col>
                     <Col xsHidden md={4}></Col>
                 </Row>

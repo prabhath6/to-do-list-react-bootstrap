@@ -28,7 +28,7 @@ class AddTask extends React.Component {
 
     render() {
         const formInstance = (
-            <Form inline onSubmit={this.handleSubmit}>
+            <Form inline  onSubmit={this.handleSubmit}>
                 <FormGroup controlId="formInlineName">
                     <FormControl type="text" placeholder="Add Task" value={this.state.taskValue} onChange={this.handleChange}/>
                 </FormGroup>
@@ -38,7 +38,7 @@ class AddTask extends React.Component {
         );
 
         return (
-            <div>
+            <div className="taskInputs">
                 {formInstance}
             </div>
         );
