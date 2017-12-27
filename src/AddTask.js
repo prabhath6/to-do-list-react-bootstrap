@@ -26,14 +26,20 @@ class AddTask extends React.Component {
         })
     }
 
+    removeCompletedTasks = () => {
+        this.props.handleCompletedTasks();
+    }
+
     render() {
         const formInstance = (
-            <Form inline  onSubmit={this.handleSubmit}>
+            <Form inline onSubmit={this.handleSubmit}>
                 <FormGroup controlId="formInlineName">
-                    <FormControl type="text" placeholder="Add Task" value={this.state.taskValue} onChange={this.handleChange}/>
+                    <FormControl type="text" placeholder="Add Task" value={this.state.taskValue} onChange={this.handleChange} />
                 </FormGroup>
                 {' '}
                 <Button bsStyle="primary" type="submit">Add</Button>
+                {' '}
+                <Button bsStyle="danger" onClick={this.removeCompletedTasks}>Remove Completed</Button>
             </Form>
         );
 
